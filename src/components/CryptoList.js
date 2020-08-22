@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchAssets } from '../actions'
+import AssetDescription from './AssetDescription'
 
 class CryptoList extends React.Component {
   componentDidMount() {
@@ -14,7 +15,8 @@ class CryptoList extends React.Component {
           <div className="content">
             <div className="description">
               <img src={asset.image.thumb} alt={asset.id}></img>
-              <p>{asset.symbol}</p>
+              <p>{asset.symbol} € {asset.market_data.current_price.eur}</p>
+              <div><AssetDescription assetId={asset.id}/></div>
             </div>
           </div>
         </div>)
@@ -23,7 +25,7 @@ class CryptoList extends React.Component {
   }
 
   render() {
-    console.log(this.props.assets)
+    // console.log(this.props.assets)
     return(
       <div className="ui relaxed divided list">
         {this.renderList()}
