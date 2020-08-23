@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { fetchAsset } from '../actions'
+import parse from 'html-react-parser';
 
 class AssetDescription extends React.Component {
   componentDidMount() {
@@ -13,9 +14,9 @@ class AssetDescription extends React.Component {
     if (!asset) {
       return null;
     }
-
+    const parsedDescription = parse(asset.description.en);
     return(
-      <div>{asset.description.en}</div>)
+      <div>{parsedDescription}</div>)
   }
 }
 
